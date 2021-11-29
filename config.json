@@ -1,5 +1,7 @@
 {
-  "privatbank": {
-    "url": " https://api.privatbank.ua/p24api/"
+  "api": {
+    "privatbank": {
+      "url": " https://api.privatbank.ua/p24api/"
+    }
   }
 }
