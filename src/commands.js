@@ -1,4 +1,4 @@
-module.exports.commands = {
+module.exports = {
   help: (client, _args, [channel, tags, _message, _self]) => {
     client.say(
       channel,
