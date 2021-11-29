@@ -1,5 +1,4 @@
 const tmi = require("tmi.js");
-const utils = require("./utils");
 
 // Define configuration options
 const opts = {
