@@ -1,10 +1,10 @@
 const axios = require("axios");
 const config = require("./config.json");
 
-module.exports.getTodayExchangeRates = () => {
+module.exports.getTodayExchangeRates = async () => {
   const date = new Date();
   date.setDate(date.getDate() - 1);
-  const response = axios.get(
+  const response = await axios.get(
     config.api.privatbank.url +
       `/exchange_rates?json&date=${date.day}.${date.month}.${date.year}`
   );

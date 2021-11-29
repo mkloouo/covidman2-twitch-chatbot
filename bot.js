@@ -43,7 +43,7 @@ function darkenMySoul(bossesNumber, deathsNumber) {
 }
 
 // Called every time a message comes in
-function onMessageHandler(target, context, msg, self) {
+function onMessageHandler(channel, tags, message, self) {
   if (self || !message.startsWith("!")) return;
 
   const args = message.slice(1).split(" ");
