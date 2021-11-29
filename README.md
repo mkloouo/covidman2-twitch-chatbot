@@ -1,7 +1,7 @@
 # covidman2-twitch-chatbot
 
 ## Preview
-![preview image containing twitch usage sample](https://github.com/mkloouo/covidman2-twitch-chatbot/blob/master/res/preview.png?raw=true)
+![preview](https://github.com/mkloouo/covidman2-twitch-chatbot/blob/main/res/preview.png?raw=true)
 
 ## Installing
 ```bash
