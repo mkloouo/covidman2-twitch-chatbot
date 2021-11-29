@@ -2,7 +2,7 @@ module.exports = {
   help: (client, _args, [channel, tags, _message, _self]) => {
     client.say(
       channel,
-      `Here you go, @${tags.nickname}: !help !darken_my_soul <bosses> <deaths>`
+      `Here you go, @${tags.username}: !help !darken_my_soul <bosses> <deaths>`
     );
   },
   darken_my_soul: async (
