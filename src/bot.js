@@ -1,5 +1,5 @@
 const tmi = require("tmi.js");
-const utils = require("./utils");
+const utils = require("../utils");
 
 // Define configuration options
 const opts = {
@@ -59,11 +59,11 @@ const commands = {
 
     client.say(
       channel,
-      `Bosses earnings: ${values.bosses.uah}₴ or ${values.bosses.usd}$$`
+      `Bosses earnings: ${values.bosses.uah}₴ or ${values.bosses.usd}$`
     );
     client.say(
       channel,
-      `Deaths penalty: ${values.deaths.uah}₴ or ${values.deaths.usd}$$`
+      `Deaths penalty: ${values.deaths.uah}₴ or ${values.deaths.usd}$`
     );
   },
 };
