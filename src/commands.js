@@ -6,18 +6,23 @@ const darken_my_soul = async (
   [bossesNumber, deathsNumber],
   [channel, tags, _message, _self]
 ) => {
+  const normalizeNumber = (number) => number.trim().replace(/[^0-9-]/g, "");
+
+  bossesNumber = Number(normalizeNumber(bossesNumber));
+  deathsNumber = Number(normalizeNumber(deathsNumber.trim()));
+
   if (
     bossesNumber < 0 ||
-    bossesNumber >= 41 ||
+    bossesNumber > 41 ||
     deathsNumber < 0 ||
     deathsNumber > 10000000
   ) {
-    client.say(`@${tags.username}: Something went wrong with your input.`);
+    client.say(
+      channel,
+      `@${tags.username}: Wrong input: 0 > bosses > 42 and 0 > deaths > 10000000`
+    );
     return;
   }
-
-  bossesNumber = Number(bossesNumber);
-  deathsNumber = Number(deathsNumber);
 
   const conversionRates = await api.getTodayExchangeRates();
   const values = {
@@ -34,17 +39,17 @@ const darken_my_soul = async (
   const usdConversionRates = conversionRates.exchangeRate.find(
     (exchangeRate) => exchangeRate.currency === "USD"
   );
-  values.bosses.uah = (usdConversionRates.saleRate * values.bosses.usd).toFixed(
-    2
+  values.bosses.uah = Number(
+    (usdConversionRates.saleRate * values.bosses.usd).toFixed(0)
   );
-  values.deaths.usd = (
-    values.deaths.uah / usdConversionRates.purchaseRate
-  ).toFixed(2);
+  values.deaths.usd = Number(
+    (values.deaths.uah / usdConversionRates.purchaseRate).toFixed(0)
+  );
 
-  client.say(
-    channel,
-    `Bosses earnings: ${values.bosses.uah}₴ or ${values.bosses.usd}$`
-  );
+  const actualMessage = `Bosses earnings: ${values.bosses.uah}₴ or ${values.bosses.usd}$`;
+  console.log(`actualMessage: ${actualMessage}`);
+
+  client.say(channel, actualMessage);
   client.say(
     channel,
     `Deaths penalty: ${values.deaths.uah}₴ or ${values.deaths.usd}$`

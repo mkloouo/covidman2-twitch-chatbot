@@ -1,2 +1,2 @@
-require('dotenv').config()
-require('./bot').startBot();
+require("dotenv").config();
+require("./bot").startBot();

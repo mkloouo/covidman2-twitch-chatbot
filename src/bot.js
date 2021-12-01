@@ -18,7 +18,7 @@ const opts = {
 
 // Create a client with our options
 const client = new tmi.client(opts);
-const commands = require('./commands');
+const commands = require("./commands");
 
 module.exports.startBot = () => {
   // Register our event handlers (defined below)
