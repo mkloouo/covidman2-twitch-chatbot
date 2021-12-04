@@ -56,13 +56,22 @@ const darken_my_soul = async (
   );
 };
 
+const fukrep98 = (client, _args, [channel, tags, _message, _self]) => {
+  client.say(channel, 
+    `@${tags.username}: It was my first rising talent twitch account with more then 20 live viewers. :)`);
+};
+
 module.exports = {
   help: (client, _args, [channel, tags, _message, _self]) => {
     client.say(
       channel,
-      `Here you go, @${tags.username}: !help !dark/darken_my_soul <bosses> <deaths>`
+      `Here you go, @${tags.username}: !help !dark/darken_my_soul <bosses> <deaths> !fr98/fukrep98`
     );
   },
+  
   dark: darken_my_soul,
   darken_my_soul,
+
+  fr98: fukrep98
+  fukrep98,
 };
