@@ -18,7 +18,8 @@ const opts = {
 
 // Create a client with our options
 const client = new tmi.client(opts);
-const commands = require("./commands");
+const { commands } = require("./commands");
+const { repeaters } = require("./repeaters");
 
 module.exports.startBot = () => {
   // Register our event handlers (defined below)
@@ -36,6 +37,15 @@ module.exports.startBot = () => {
   });
   client.on("connected", (addr, port) => {
     console.log(`* Connected to ${addr}:${port}`);
+
+    for (const repeater of repeaters) {
+      const { seconds, fn } = repeater;
+
+      setInterval(
+        () => opts.channels.forEach((channel) => fn(client, channel)),
+        seconds * 1000
+      );
+    }
   });
 
   // Connect to Twitch:

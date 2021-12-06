@@ -1,5 +1,6 @@
-const utils = require("./utils");
-const api = require("./api");
+const { utils } = require("./utils");
+const { api } = require("./api");
+const { getVisitSiteString } = require("./repeaters");
 
 const darken_my_soul = async (
   client,
@@ -64,13 +65,10 @@ const fukrep98 = (client, _args, [channel, tags, _message, _self]) => {
 };
 
 const web = (client, _args, [channel, tags, _message, _self]) => {
-  client.say(
-    channel,
-    `@${tags.username}: might want to visit https://covidman2.live. :)`
-  );
+  client.say(channel, `@${tags.username}: ${getVisitSiteString()}`);
 };
 
-module.exports = {
+module.exports.commands = {
   help: (client, _args, [channel, tags, _message, _self]) => {
     client.say(
       channel,
