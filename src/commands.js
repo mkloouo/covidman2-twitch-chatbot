@@ -72,7 +72,7 @@ module.exports.commands = {
   help: (client, _args, [channel, tags, _message, _self]) => {
     client.say(
       channel,
-      `Here you go, @${tags.username}: !help !dark/darken_my_soul <bosses> <deaths> !fr98/fukrep98 !i/info/w/web`
+      `Here you go, @${tags.username}: !help !ds/dark/darken_my_soul <bosses> <deaths> !fr98/fukrep98 !i/info/w/web`
     );
   },
 
