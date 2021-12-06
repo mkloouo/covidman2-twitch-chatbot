@@ -1,5 +1,5 @@
 module.exports.getVisitSiteString = () =>
-  "might want to visit https://covidman2.live FortOne";
+  "visit https://covidman2.live";
 
 module.exports.repeaters = [
   {
