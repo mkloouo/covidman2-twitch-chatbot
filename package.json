@@ -4,8 +4,9 @@
     "description": "Simple, yet usable bot.",
     "main": "./src/index.js",
     "scripts": {
-        "start": "forever start src/index.js",
         "debug": "node src/index.js",
+        "prestart": "npm run stop",
+        "start": "forever start src/index.js",
         "stop": "forever stopall"
     },
     "dependencies": {
