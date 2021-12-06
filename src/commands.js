@@ -63,6 +63,13 @@ const fukrep98 = (client, _args, [channel, tags, _message, _self]) => {
   );
 };
 
+const web = (client, _args, [channel, tags, _message, _self]) => {
+  client.say(
+    channel,
+    `@${tags.username}: might want to visit https://covidman2.live. :)`
+  );
+};
+
 module.exports = {
   help: (client, _args, [channel, tags, _message, _self]) => {
     client.say(
@@ -77,4 +84,9 @@ module.exports = {
 
   fr98: fukrep98,
   fukrep98,
+
+  i: web,
+  info: web,
+  w: web,
+  web,
 };
