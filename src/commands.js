@@ -101,6 +101,16 @@ const streets =
     client.say(channel, i18n('streets', locale));
   };
 
+const code = (client, _args, [channel]) => {
+  client.say(channel, i18n('code', 'en'));
+};
+
+const games =
+  (locale) =>
+  (client, _args, [channel]) => {
+    client.say(channel, i18n('games', locale));
+  };
+
 const commands = {
   утро: morning('ru'),
   morning: morning('en'),
@@ -114,6 +124,13 @@ const commands = {
   streets: streets('en'),
   улица: streets('ru'),
   гулять: streets('ru'),
+
+  code,
+  dev: code,
+  coding: code,
+
+  games: games('en'),
+  игры: games('ru'),
 
   darken_my_soul,
   ds: darken_my_soul,
