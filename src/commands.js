@@ -92,7 +92,7 @@ const commands = {
 commands.help = (client, _args, [channel, tags, _message, _self]) => {
   console.log('user info:', tags);
 
-  const message = `@${tags.username}, list of commands: !help `;
+  const message = `@${tags.username}, list of commands: `;
 
   const listOfCommands = Object.keys(commands).reduce((acc, command) => {
     return acc + `!${command} `;
