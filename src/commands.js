@@ -1,16 +1,23 @@
-const { utils } = require("./utils");
-const { api } = require("./api");
-const { getVisitSiteString } = require("./repeaters");
+const { utils } = require('./utils');
+const { api } = require('./api');
+const { getVisitSiteString } = require('./repeaters');
 
 const darken_my_soul = async (
   client,
   [bossesNumber, deathsNumber],
   [channel, tags, _message, _self]
 ) => {
-  const normalizeNumber = (number) => number.trim().replace(/[^0-9-]/g, "");
+  const normalizeNumber = (number) => (number || '').trim().replace(/[^0-9-]/g, '');
 
-  bossesNumber = Number(normalizeNumber(bossesNumber));
-  deathsNumber = Number(normalizeNumber(deathsNumber.trim()));
+  bossesNumberString = normalizeNumber(bossesNumber);
+  deathsNumberString = normalizeNumber(deathsNumber);
+
+  if (bossesNumberString.length === 0 || deathsNumberString.length === 0) {
+    return client.say(
+      channel,
+      `@${tags.username}: command usage: !darken_my_soul <bosses> <deaths>`
+    );
+  }
 
   if (
     bossesNumber < 0 ||
@@ -18,11 +25,10 @@ const darken_my_soul = async (
     deathsNumber < 0 ||
     deathsNumber > 10000000
   ) {
-    client.say(
+    return client.say(
       channel,
       `@${tags.username}: Wrong input: 0 > bosses > 42 and 0 > deaths > 10000000`
     );
-    return;
   }
 
   const conversionRates = await api.getTodayExchangeRates();
@@ -38,7 +44,7 @@ const darken_my_soul = async (
   };
 
   const usdConversionRates = conversionRates.exchangeRate.find(
-    (exchangeRate) => exchangeRate.currency === "USD"
+    (exchangeRate) => exchangeRate.currency === 'USD'
   );
   values.bosses.uah = Number(
     (usdConversionRates.saleRate * values.bosses.usd).toFixed(0)
@@ -64,27 +70,35 @@ const fukrep98 = (client, _args, [channel, tags, _message, _self]) => {
   );
 };
 
-const web = (client, _args, [channel, tags, _message, _self]) => {
+const covidman2 = (client, _args, [channel, tags, _message, _self]) => {
   client.say(channel, `@${tags.username}: ${getVisitSiteString()}`);
 };
 
-module.exports.commands = {
-  help: (client, _args, [channel, tags, _message, _self]) => {
-    client.say(
-      channel,
-      `Here you go, @${tags.username}: !help !ds/dark/darken_my_soul <bosses> <deaths> !fr98/fukrep98 !i/info/w/web`
-    );
-  },
-
+const commands = {
+  darken_my_soul,
   ds: darken_my_soul,
   dark: darken_my_soul,
-  darken_my_soul,
 
-  fr98: fukrep98,
   fukrep98,
+  fr98: fukrep98,
 
-  i: web,
-  info: web,
-  w: web,
-  web,
+  covidman2,
+  i: covidman2,
+  info: covidman2,
+  w: covidman2,
+  web: covidman2,
 };
+
+commands.help = (client, _args, [channel, tags, _message, _self]) => {
+  console.log('user info:', tags);
+
+  const message = `@${tags.username}, list of commands: !help `;
+
+  const listOfCommands = Object.keys(commands).reduce((acc, command) => {
+    return acc + `!${command} `;
+  }, message);
+
+  client.say(channel, listOfCommands);
+};
+
+module.exports.commands = commands;
