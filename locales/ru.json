@@ -1,3 +1,4 @@
 {
-  "morning_routine": "Мое утро: запустить стрим на Twitch -> убраться на столе -> зубы, душ, умыться -> зарядочка"
+	"morning": "Мое утро: запустить стрим на Twitch -> убраться на столе -> зубы, душ, умыться -> зарядочка",
+	"cleanup": "cleanup: either command or translation (ru) is not covered yet"
 }
