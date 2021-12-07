@@ -78,13 +78,32 @@ const covidman2 = (client, _args, [channel, tags]) => {
 
 const morning =
   (locale) =>
-  (client, _args, [channel, _tags, _message, _self]) => {
-    client.say(channel, i18n({ phrase: 'morning_routine', locale }));
+  (client, _args, [channel]) => {
+    client.say(channel, i18n('morning', locale));
   };
+
+const cleanup =
+  (locale) =>
+  (client, _args, [channel]) => {
+    client.say(channel, i18n('cleanup', locale));
+  };
+
+const adventofcode = (client, _args, [channel, tags, _message, _self]) => {
+  client.say(
+    channel,
+    `@${tags.username}, check this out: https://adventofcode.com/2021/leaderboard`
+  );
+};
 
 const commands = {
   утро: morning('ru'),
   morning: morning('en'),
+
+  уборка: cleanup('ru'),
+  cleanup: cleanup('en'),
+
+  adventofcode,
+  aoc: adventofcode,
 
   darken_my_soul,
   ds: darken_my_soul,
@@ -100,8 +119,6 @@ const commands = {
 };
 
 commands.help = (client, _args, [channel, tags, _message, _self]) => {
-  console.log('user info:', tags);
-
   const message = `@${tags.username}, list of commands: `;
 
   const listOfCommands = Object.keys(commands).reduce((acc, command) => {
