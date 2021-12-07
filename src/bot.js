@@ -1,4 +1,4 @@
-const tmi = require("tmi.js");
+const tmi = require('tmi.js');
 
 // Define configuration options
 const opts = {
@@ -18,15 +18,15 @@ const opts = {
 
 // Create a client with our options
 const client = new tmi.client(opts);
-const { commands } = require("./commands");
-const { repeaters } = require("./repeaters");
+const { commands } = require('./commands');
+const { repeaters } = require('./repeaters');
 
 module.exports.startBot = () => {
   // Register our event handlers (defined below)
-  client.on("message", async (channel, tags, message, self) => {
-    if (self || !message.startsWith("!")) return;
+  client.on('message', async (channel, tags, message, self) => {
+    if (self || !message.startsWith('!')) return;
 
-    const args = message.slice(1).split(" ");
+    const args = message.slice(1).split(' ');
     const command = args.shift().toLowerCase();
 
     for (const [existing_command, fn] of Object.entries(commands)) {
@@ -37,11 +37,15 @@ module.exports.startBot = () => {
 
     client.say(channel, 'Command not found.');
   });
-  client.on("connected", (addr, port) => {
+  client.on('connected', (addr, port) => {
     console.log(`* Connected to ${addr}:${port}`);
 
     for (const repeater of repeaters) {
       const { seconds, fn } = repeater;
+      setTimeout(
+        () => opts.channels.forEach((channel) => fn(client, channel)),
+        5000
+      );
 
       setInterval(
         () => opts.channels.forEach((channel) => fn(client, channel)),
