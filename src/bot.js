@@ -31,9 +31,11 @@ module.exports.startBot = () => {
 
     for (const [existing_command, fn] of Object.entries(commands)) {
       if (command === existing_command) {
-        await fn(client, args, [channel, tags, message, self]);
+        return await fn(client, args, [channel, tags, message, self]);
       }
     }
+
+    client.say(channel, 'Command not found.');
   });
   client.on("connected", (addr, port) => {
     console.log(`* Connected to ${addr}:${port}`);

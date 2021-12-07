@@ -21,6 +21,9 @@ const darken_my_soul = async (
     );
   }
 
+  bossesNumber = Number(bossesNumberString);
+  deathsNumber = Number(deathsNumberString);
+
   if (
     bossesNumber < 0 ||
     bossesNumber > 41 ||
