@@ -95,6 +95,12 @@ const adventofcode = (client, _args, [channel, tags, _message, _self]) => {
   );
 };
 
+const streets =
+  (locale) =>
+  (client, _args, [channel]) => {
+    client.say(channel, i18n('streets', locale));
+  };
+
 const commands = {
   утро: morning('ru'),
   morning: morning('en'),
@@ -104,6 +110,10 @@ const commands = {
 
   adventofcode,
   aoc: adventofcode,
+
+  streets: streets('en'),
+  улица: streets('ru'),
+  гулять: streets('ru'),
 
   darken_my_soul,
   ds: darken_my_soul,
