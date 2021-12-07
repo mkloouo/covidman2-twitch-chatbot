@@ -1,13 +1,15 @@
 const { utils } = require('./utils');
 const { api } = require('./api');
 const { getVisitSiteString } = require('./repeaters');
+const { i18n } = require('../locales');
 
 const darken_my_soul = async (
   client,
   [bossesNumber, deathsNumber],
-  [channel, tags, _message, _self]
+  [channel, tags]
 ) => {
-  const normalizeNumber = (number) => (number || '').trim().replace(/[^0-9-]/g, '');
+  const normalizeNumber = (number) =>
+    (number || '').trim().replace(/[^0-9-]/g, '');
 
   bossesNumberString = normalizeNumber(bossesNumber);
   deathsNumberString = normalizeNumber(deathsNumber);
@@ -63,18 +65,27 @@ const darken_my_soul = async (
   );
 };
 
-const fukrep98 = (client, _args, [channel, tags, _message, _self]) => {
+const fukrep98 = (client, _args, [channel, tags]) => {
   client.say(
     channel,
     `@${tags.username}: It was my first rising talent twitch account with more then 20 live viewers. :)`
   );
 };
 
-const covidman2 = (client, _args, [channel, tags, _message, _self]) => {
+const covidman2 = (client, _args, [channel, tags]) => {
   client.say(channel, `@${tags.username}: ${getVisitSiteString()}`);
 };
 
+const morning =
+  (locale) =>
+  (client, _args, [channel, _tags, _message, _self]) => {
+    client.say(channel, i18n({ phrase: 'morning_routine', locale }));
+  };
+
 const commands = {
+  утро: morning('ru'),
+  morning: morning('en'),
+
   darken_my_soul,
   ds: darken_my_soul,
   dark: darken_my_soul,
@@ -83,10 +94,9 @@ const commands = {
   fr98: fukrep98,
 
   covidman2,
-  i: covidman2,
-  info: covidman2,
-  w: covidman2,
-  web: covidman2,
+  covidman: covidman2,
+  live: covidman2,
+  site: covidman2,
 };
 
 commands.help = (client, _args, [channel, tags, _message, _self]) => {
