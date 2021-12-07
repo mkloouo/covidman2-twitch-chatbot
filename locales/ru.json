@@ -2,5 +2,5 @@
   "morning": "Мое утро: запустить стрим на Twitch -> убраться на столе -> зубы, душ, умыться -> зарядочка",
   "cleanup": "cleanup: either command or translation (ru) is not covered yet",
   "streets": "streets: either command or translation (ru) is not covered yet",
-  "sell": "Помогите найти покупателя для моего бота: напишите !help как пример команды. Сам бот стоит 50$ и каждая дополнительная команда будет стоить от 1$ до 100$ в зависимости от сложности. Настройка бота для автоматической его работы будет стоить еще 50$. Всем заранее спасибо!"
+  "sell": "Помогите найти покупателя для моего бота: !help - как пример напишите. https://www.fiverr.com/mkloouo/create-custom-twitch-bot-for-you. Всем заранее спасибо!"
 }
