@@ -1,7 +1,8 @@
-const { utils } = require('./utils');
-const { api } = require('./api');
-const { getVisitSiteString } = require('./repeaters');
-const { i18n } = require('../locales');
+const { utils } = require('../utils');
+const { api } = require('../api');
+const { getVisitSiteString } = require('../repeaters');
+const { i18n } = require('../../locales');
+const { sellBot } = require('./sellBot');
 
 const darken_my_soul = async (
   client,
@@ -75,9 +76,11 @@ const fukrep98 = (client, _args, [channel, tags]) => {
   );
 };
 
-const covidman2 = (client, _args, [channel, tags]) => {
-  client.say(channel, `@${tags.username}: ${getVisitSiteString()}`);
-};
+const covidman2 =
+  (locale) =>
+  (client, _args, [channel, tags]) => {
+    client.say(channel, `@${tags.username}: ${getVisitSiteString(locale)}`);
+  };
 
 const morning =
   (locale) =>
@@ -114,33 +117,23 @@ const games =
     client.say(channel, i18n('games', locale));
   };
 
-const sellBot =
-  (locale) =>
-  (client, _args, [channel]) => {
-    if (!['en', 'ru'].includes(locale)) {
-      client.say(channel, `This command is not localized in ${locale}.`);
-    }
-
-    client.say(channel, i18n('sellBot', locale));
-  };
-
 const commands = {
-  'продажа': sellBot('ru'),
-  'продажаБота': sellBot('ru'),
+  продажа: sellBot('ru'),
+  продажаБота: sellBot('ru'),
 
-  sell: sellBot('en'),
-  sellBot: sellBot('en'),
+  sell: sellBot(),
+  sellBot: sellBot(),
 
   утро: morning('ru'),
-  morning: morning('en'),
+  morning: morning(),
 
   уборка: cleanup('ru'),
-  cleanup: cleanup('en'),
+  cleanup: cleanup(),
 
   adventofcode,
   aoc: adventofcode,
 
-  streets: streets('en'),
+  streets: streets(),
   улица: streets('ru'),
   гулять: streets('ru'),
 
@@ -148,7 +141,7 @@ const commands = {
   dev: code,
   coding: code,
 
-  games: games('en'),
+  games: games(),
   игры: games('ru'),
 
   darken_my_soul,
@@ -158,10 +151,11 @@ const commands = {
   fukrep98,
   fr98: fukrep98,
 
-  covidman2,
-  covidman: covidman2,
-  live: covidman2,
-  site: covidman2,
+  covidman2: covidman2(),
+  covidman: covidman2(),
+  live: covidman2(),
+  site: covidman2(),
+  сайт: covidman2('ru'),
 };
 
 commands.help = (client, _args, [channel, tags, _message, _self]) => {

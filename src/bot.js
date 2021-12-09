@@ -1,28 +1,9 @@
-const tmi = require('tmi.js');
-
-// Define configuration options
-const opts = {
-  options: {
-    debug: true,
-    skipMembership: true,
-  },
-  identity: {
-    username: process.env.BOT_USERNAME,
-    password: process.env.OAUTH_TOKEN,
-  },
-  channels: [process.env.CHANNEL_NAME],
-  connection: {
-    reconnect: true,
-  },
-};
-
-// Create a client with our options
-const client = new tmi.client(opts);
+const { opts, client } = require('./client');
 const { commands } = require('./commands');
 const { repeaters } = require('./repeaters');
+const { constants } = require('./constants');
 
 module.exports.startBot = () => {
-  // Register our event handlers (defined below)
   client.on('message', async (channel, tags, message, self) => {
     if (self || !message.startsWith('!')) return;
 
@@ -37,23 +18,29 @@ module.exports.startBot = () => {
 
     client.say(channel, 'Command not found.');
   });
-  client.on('connected', (addr, port) => {
-    console.log(`* Connected to ${addr}:${port}`);
+
+  client.on('pong', () => {
+    // TODO: add greeting new members
+  });
+
+  client.on('connected', () => {
+    setInterval(() => {
+      client.ping();
+    }, constants.GREET_CHECK_TIME_IN_SECOND * 1000);
 
     for (const repeater of repeaters) {
       const { seconds, fn } = repeater;
+
       setTimeout(
         () => opts.channels.forEach((channel) => fn(client, channel)),
-        5000
+        constants.SECOND_IN_MILLISECONDS
       );
-
       setInterval(
         () => opts.channels.forEach((channel) => fn(client, channel)),
-        seconds * 1000
+        seconds * constants.SECOND_IN_MILLISECONDS
       );
     }
   });
 
-  // Connect to Twitch:
   client.connect();
 };

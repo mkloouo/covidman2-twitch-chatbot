@@ -3,5 +3,6 @@
   "cleanup": "cleanup: either command or translation (en) is not covered yet",
   "code": "code: either command or translation (en) is not covered yet",
   "games": "games: either command or translation (en) is not covered yet",
-  "sellBot": "Help me find the customer for custom bot: check !help. Thanks in advance! Here's the link: https://www.fiverr.com/mkloouo/create-custom-twitch-bot-for-you"
+  "sellBot": "Help me find the customer for custom bot: check !help. Thanks in advance! Here's the link: https://www.fiverr.com/mkloouo/create-custom-twitch-bot-for-you",
+  "visitCovidSite": "visit https://covidman2.live"
 }
