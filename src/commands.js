@@ -125,8 +125,11 @@ const sellBot =
   };
 
 const commands = {
-  sell: sellBot,
-  sellBot,
+  'продажа': sellBot('ru'),
+  'продажаБота': sellBot('ru'),
+
+  sell: sellBot('en'),
+  sellBot: sellBot('en'),
 
   утро: morning('ru'),
   morning: morning('en'),

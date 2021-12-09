@@ -12,13 +12,13 @@ module.exports.repeaters = [
   {
     seconds: 3600,
     fn: (client, channel) => {
-      commands.sellBot('ru')(client, null, [channel]);
+      commands['продажаБота'](client, null, [channel]);
     },
   },
   {
     seconds: 3605,
     fn: (client, channel) => {
-      commands.sellBot('en')(client, null, [channel]);
+      commands.sellBot(client, null, [channel]);
     },
   },
 ];
