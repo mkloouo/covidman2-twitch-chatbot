@@ -1,4 +1,4 @@
-import { sellBot } from './commands';
+const { commands } = require('./commands');
 
 module.exports.getVisitSiteString = () => 'visit https://covidman2.live';
 
@@ -12,13 +12,13 @@ module.exports.repeaters = [
   {
     seconds: 3600,
     fn: (client, channel) => {
-      sellBot('ru')(client, null, [channel]);
+      commands.sellBot('ru')(client, null, [channel]);
     },
   },
   {
     seconds: 3605,
     fn: (client, channel) => {
-      sellBot('en')(client, null, [channel]);
+      commands.sellBot('en')(client, null, [channel]);
     },
   },
 ];

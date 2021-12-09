@@ -114,7 +114,7 @@ const games =
     client.say(channel, i18n('games', locale));
   };
 
-export const sellBot =
+const sellBot =
   (locale) =>
   (client, _args, [channel]) => {
     if (!['en', 'ru'].includes(locale)) {
