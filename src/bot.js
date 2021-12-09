@@ -3,7 +3,7 @@ const { commands } = require('./commands');
 const { repeaters } = require('./repeaters');
 const { constants } = require('./constants');
 
-module.exports.startBot = () => {
+module.exports.startBot = async () => {
   client.on('message', async (channel, tags, message, self) => {
     if (self || !message.startsWith('!')) return;
 
@@ -19,14 +19,17 @@ module.exports.startBot = () => {
     client.say(channel, 'Command not found.');
   });
 
-  client.on('pong', () => {
-    // TODO: add greeting new members
-  });
+  // TODO (1): handle ping -> pong issue
+  // client.on('pong', () => {
+  //   // TODO (2): add greeting new members
+  // });
 
-  client.on('connected', () => {
-    setInterval(() => {
-      client.ping();
-    }, constants.GREET_CHECK_TIME_IN_SECOND * 1000);
+  client.on('connected', (address, port) => {
+    console.log(`[connected] listening on ${address}:${port}`);
+
+    // setInterval(() => {
+    //   client.ping();
+    // }, constants.GREET_CHECK_TIME_IN_SECOND * 1000);
 
     for (const repeater of repeaters) {
       const { seconds, fn } = repeater;
@@ -42,5 +45,5 @@ module.exports.startBot = () => {
     }
   });
 
-  client.connect();
+  return client.connect();
 };

@@ -1,5 +1,5 @@
-const config = require("./config.json");
-const fetch = require("node-fetch");
+const config = require('./config');
+const fetch = require('node-fetch');
 
 module.exports.api = {
   getTodayExchangeRates: async () => {
