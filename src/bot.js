@@ -19,17 +19,8 @@ module.exports.startBot = async () => {
     client.say(channel, 'Command not found.');
   });
 
-  // TODO (1): handle ping -> pong issue
-  // client.on('pong', () => {
-  //   // TODO (2): add greeting new members
-  // });
-
   client.on('connected', (address, port) => {
     console.log(`[connected] listening on ${address}:${port}`);
-
-    // setInterval(() => {
-    //   client.ping();
-    // }, constants.GREET_CHECK_TIME_IN_SECOND * 1000);
 
     for (const repeater of repeaters) {
       const { seconds, fn } = repeater;

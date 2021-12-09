@@ -7,16 +7,17 @@ const opts = {
     debug: true,
     skipMembership: true,
   },
+  connection: {
+    server: '0.0.0.0',
+    port: Number(config.port),
+    reconnect: true,
+    secure: true,
+  },
   identity: {
     username: process.env.BOT_USERNAME,
     password: process.env.OAUTH_TOKEN,
   },
   channels: [process.env.CHANNEL_NAME],
-  connection: {
-    port: Number(config.port),
-    reconnect: true,
-    secure: true,
-  },
 };
 
 const client = new tmi.client(opts);
