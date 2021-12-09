@@ -1,4 +1,4 @@
-const { i18n } = require('../locales');
+import { sellBot } from './commands';
 
 module.exports.getVisitSiteString = () => 'visit https://covidman2.live';
 
@@ -12,13 +12,13 @@ module.exports.repeaters = [
   {
     seconds: 3600,
     fn: (client, channel) => {
-      client.say(channel, i18n('sell', 'ru'));
+      sellBot('ru')(client, null, [channel]);
     },
   },
   {
     seconds: 3605,
     fn: (client, channel) => {
-      client.say(channel, i18n('sell'));
+      sellBot('en')(client, null, [channel]);
     },
   },
 ];

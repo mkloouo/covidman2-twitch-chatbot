@@ -2,5 +2,5 @@
   "morning": "Мое утро: запустить стрим на Twitch -> убраться на столе -> зубы, душ, умыться -> зарядочка",
   "cleanup": "cleanup: either command or translation (ru) is not covered yet",
   "streets": "streets: either command or translation (ru) is not covered yet",
-  "sell": "Помогите найти покупателя для моего бота: !help - как пример напишите. https://www.fiverr.com/mkloouo/create-custom-twitch-bot-for-you. Всем заранее спасибо!"
+  "sellBot": "Помогите найти покупателя для моего бота: !help - как пример напишите. Всем заранее спасибо! Вот ссылка: https://www.fiverr.com/mkloouo/create-custom-twitch-bot-for-you"
 }
