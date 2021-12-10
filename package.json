@@ -4,7 +4,8 @@
   "description": "Simple, yet usable bot.",
   "main": "./src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "prestart": "forever stopall",
+    "start": "forever start src/index.js"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
