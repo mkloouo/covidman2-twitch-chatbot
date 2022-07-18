@@ -4,16 +4,20 @@
   "description": "Simple, yet usable bot.",
   "main": "./src/index.js",
   "scripts": {
-    "prestart": "forever stopall",
-    "start": "forever start src/index.js"
+    "start": "node src/index.js"
   },
   "dependencies": {
+    "@twurple/api": "^5.1.6",
+    "@twurple/auth": "^5.1.6",
+    "@types/axios": "^0.14.0",
     "dotenv": "^10.0.0",
     "express": "^4.16.4",
     "forever": "^4.0.1",
     "i18n": "^0.13.3",
     "node-fetch": "^2.6.6",
-    "tmi.js": "^1.2.1"
+    "say": "^0.16.0",
+    "tmi.js": "^1.2.1",
+    "twitch-auth": "^4.6.7"
   },
   "engines": {
     "node": "8.x"

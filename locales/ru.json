@@ -1,6 +1,8 @@
 {
-  "morning": "Мое утро: запустить стрим на Twitch -> убраться на столе -> зубы, душ, умыться -> зарядочка",
-  "cleanup": "cleanup: either command or translation (ru) is not covered yet",
+  "morning": "Мое утро начинается с стакана воды, чистки зубов и приема душа.",
+  "cleanup": "Убери на столе, собака!",
+  "code": "#include <iostream> int main() { std::cout << \"hello, world!\" << std::endl; } ",
+  "games": "games: either command or translation (en) is not covered yet",
   "streets": "streets: either command or translation (ru) is not covered yet",
   "sellBot": "Помогите найти покупателя для моего бота: !help - как пример напишите. Всем заранее спасибо! Вот ссылка: https://www.fiverr.com/share/Yypavp",
   "visitCovidSite": "пожалуйста посетите https://covidman2.live"

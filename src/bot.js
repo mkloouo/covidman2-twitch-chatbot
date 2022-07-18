@@ -3,8 +3,21 @@ const { commands } = require('./commands');
 const { repeaters } = require('./repeaters');
 const { constants } = require('./constants');
 
+const Say = require('say').Say;
+const say = new Say('darwin' || 'win32' || 'linux');
+
 module.exports.startBot = async () => {
   client.on('message', async (channel, tags, message, self) => {
+    if (
+      !self &&
+      !message.startsWith('!') &&
+      (tags.mod || tags.subscriber || (tags.badges && tags.badges.vip)) &&
+      tags.username !== process.env.BOT_USERNAME
+    ) {
+      say.speak(message, 'Yuri');
+      return;
+    }
+
     if (self || !message.startsWith('!')) return;
 
     const args = message.slice(1).split(' ');
